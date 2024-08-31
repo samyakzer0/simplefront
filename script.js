@@ -71,7 +71,9 @@ const contractABI = [
 async function transferTokens() {
     if (typeof window.ethereum !== 'undefined') {
         const web3 = new Web3(window.ethereum);
+        console.log('MetaMask detected');
         try {
+            // Request account access
             await window.ethereum.request({ method: 'eth_requestAccounts' });
 
             const recipient = document.getElementById('recipient').value;
@@ -97,8 +99,14 @@ async function transferTokens() {
             const tx = await contract.methods.transfer(recipient, amountInWei).send({ from: sender });
             alert('Transfer successful! Transaction hash: ' + tx.transactionHash);
         } catch (error) {
-            console.error(error);
-            alert('Error during transfer.');
+            console.error('Error details:', error);
+            if (error.code === 4001) {
+                alert('User denied account access.');
+            } else if (error.code === -32002) {
+                alert('Request already pending.');
+            } else {
+                alert('Error during transfer: ' + (error.message || error));
+            }
         }
     } else {
         alert('MetaMask is not installed.');
