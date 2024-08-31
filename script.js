@@ -67,10 +67,6 @@ const contractABI = [
         "type": "function"
     }
 ];
-const web3Utils = Web3.utils;
-const BigNumber = web3Utils.BN;
-
-
 async function transferTokens() {
     if (typeof window.ethereum !== 'undefined') {
         const web3 = new Web3(window.ethereum);
