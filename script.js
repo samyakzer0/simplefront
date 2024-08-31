@@ -93,7 +93,7 @@ async function transferTokens() {
             const sender = accounts[0];
 
             const decimals = await contract.methods.decimals().call();
-            const amountInWei = new BigNumber(amount).multipliedBy(new BigNumber(10).pow(decimals));
+            const amountInWei = web3.utils.toBN(amount).mul(web3.utils.toBN(10).pow(web3.utils.toBN(decimals)));
 
             const tx = await contract.methods.transfer(recipient, amountInWei.toString()).send({ from: sender });
             alert('Transfer successful! Transaction hash: ' + tx.transactionHash);
