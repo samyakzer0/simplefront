@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer ERC-20 Tokens</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <h1>Transfer ERC-20 Tokens</h1>
+    <form id="transfer-form">
+        <label for="recipient">Recipient Address:</label>
+        <input type="text" id="recipient" required><br><br>
+        <label for="amount">Amount (in tokens):</label>
+        <input type="number" id="amount" step="0.01" required><br><br>
+        <button type="button" onclick="transferTokens()">Transfer</button>
+    </form>
+</body>
+</html>
